@@ -10,6 +10,7 @@ enum {
 	ROLL,
 	ATTACK
 }
+
 var state = MOVE
 var velocity = Vector2.ZERO
 var roll_vector = Vector2.LEFT
