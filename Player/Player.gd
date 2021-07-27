@@ -17,7 +17,7 @@ var roll_vector = Vector2.LEFT
 
 onready var animationPlayer = $AnimationPlayer
 onready var animationTree = $AnimationTree
-onready var animationState = animationTree.get("parameters/playback") //.
+onready var animationState = animationTree.get("parameters/playback")
 
 func _ready():
 	animationTree.active = true
