@@ -7,8 +7,6 @@ const FRICTION = 500
 
 enum {
 	MOVE,
-	ROLL,
-	ATTACK
 }
 
 
@@ -27,10 +25,6 @@ func _physics_process(delta):
 	match state:
 		MOVE:
 			move_state(delta)
-		ROLL:
-			roll_state(delta)
-		ATTACK:
-			attack_state(delta)
 	
 func move_state(delta):
 	var input_vector = Vector2.ZERO
@@ -51,21 +45,6 @@ func move_state(delta):
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
 
 	velocity = move_and_slide(velocity)
-	
-	if Input.is_action_just_pressed("attack"):
-		state = ATTACK
-	
-	if Input.is_action_just_pressed("roll"): #labeled on input map
-		state = ROLL
-	
-func roll_state(delta):
-	velocity = roll_vector * ROLL_SPEED
-	animationState.travel("Roll")
-	move()
-	
-func attack_state(delta):
-	velocity = Vector2.ZERO
-	animationState.travel("Attack")
 	
 func move():
 	velocity = move_and_slide(velocity)
