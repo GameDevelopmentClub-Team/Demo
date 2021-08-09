@@ -3,6 +3,11 @@ extends Node2D
 
 func _ready():
 	pass
+	
+func _process(delta):
+	if $TitleMusic.playing == false:
+		$TitleMusic.play()
+	pass
 
 
 func _on_Button_pressed():
