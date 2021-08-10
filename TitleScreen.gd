@@ -10,13 +10,13 @@ func _process(delta):
 	pass
 
 
-func _on_Button_pressed():
-	$ButtonSound.play()
-	yield($ButtonSound, "finished")
-	get_tree().change_scene("res://World.tscn")
-
-
 func _on_Settings_pressed():
 	$ButtonSound.play()
 	yield($ButtonSound, "finished")
 	get_tree().change_scene("res://SettingsScreen.tscn")
+	
+func _unhandled_key_input(event):
+	if event.is_pressed():
+		$ButtonSound.play()
+		yield($ButtonSound, "finished")
+		get_tree().change_scene("res://World.tscn")
