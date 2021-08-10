@@ -7,6 +7,9 @@
 [node name="World" type="Node2D"]
 position = Vector2( 45.306, 72.6783 )
 
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 132.023, 62.6652 )
+
 [node name="Background" type="Sprite" parent="."]
 position = Vector2( 160, 90 )
 region_enabled = true
@@ -25,9 +28,6 @@ format = 1
 position = Vector2( 914.663, 467.171 )
 current = true
 script = ExtResource( 3 )
-
-[node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 132.023, 62.6652 )
 
 [node name="Bush" type="Sprite" parent="."]
 position = Vector2( 675.027, 333.855 )

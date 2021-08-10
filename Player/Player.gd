@@ -1,47 +1,26 @@
 extends KinematicBody2D
 
-const ACCELERATION = 1250
-const MAX_SPEED = 200
-const FRICTION = 1250
-
-enum {
-	MOVE
-}
-
-
-var state = MOVE
-var velocity = Vector2.ZERO
-var roll_vector = Vector2.LEFT
-
-onready var animationPlayer = $AnimationPlayer
-onready var animationTree = $AnimationTree
-onready var animationState = animationTree.get("parameters/playback")
-
-func _ready():
-	animationTree.active = true
+var speed = 400
 
 func _physics_process(delta):
-	match state:
-		MOVE:
-			move_state(delta)
+	#Setting starting velocity to 0
+	var velocity = Vector2.ZERO
+	#Determining velocity depending on which key is pressed
+	if Input.is_action_pressed("Right"):
+		velocity.x += 1.0
+	if Input.is_action_pressed("Left"):
+		velocity.x -= 1.0
+	if Input.is_action_pressed("Up"):
+		velocity.y -= 1.0
+	if Input.is_action_pressed("Down"):
+		velocity.y += 1.0
 	
-func move_state(delta):
-	var input_vector = Vector2.ZERO
-	input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
-	input_vector.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
-	input_vector = input_vector.normalized()
+	velocity = velocity.normalized() #Normalizing diagonal speeds
 	
-	if input_vector != Vector2.ZERO:
-		roll_vector = input_vector
-		animationTree.set("parameters/Idle/blend_position", input_vector)
-		animationTree.set("parameters/Run/blend_position", input_vector)
-		animationState.travel("Run")
-		velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION * delta)
+	if velocity == Vector2.ZERO:
+		$AnimationTree.get("parameters/playback").travel("Idle")
 	else:
-		animationState.travel("Idle")
-		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
-
-	velocity = move_and_slide(velocity)
-	
-func move():
-	velocity = move_and_slide(velocity)
+		$AnimationTree.get("parameters/playback").travel("Run")
+		$AnimationTree.set("parameters/Idle/blend_position", velocity)
+		$AnimationTree.set("parameters/Run/blend_position", velocity)
+		move_and_slide(velocity * speed)
