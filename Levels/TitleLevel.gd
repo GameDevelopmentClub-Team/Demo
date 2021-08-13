@@ -5,13 +5,12 @@ func _process(delta):
 		$TitleMusic.play()
 	pass
 
-
 func _on_Settings_pressed():
 	$ButtonSound.play()
 	yield($ButtonSound, "finished")
 	get_tree().change_scene("res://Levels/SettingsLevel.tscn")
 	
-func _unhandled_key_input(event) -> void:
+func _unhandled_key_input(event):
 	$ButtonSound.play()
 	yield($ButtonSound, "finished")
 	get_tree().change_scene("res://Levels/EasyMazeLevel.tscn")
