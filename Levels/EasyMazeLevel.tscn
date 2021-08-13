@@ -4,7 +4,7 @@
 [ext_resource path="res://Levels/EasyMazeLevel.gd" type="Script" id=2]
 [ext_resource path="res://Player/Camera2D.gd" type="Script" id=3]
 [ext_resource path="res://World/FloorTileset.png" type="Texture" id=4]
-[ext_resource path="res://World/TestTileset.png" type="Texture" id=5]
+[ext_resource path="res://World/WallTileset.png" type="Texture" id=5]
 [ext_resource path="res://World/WallsV1Blue.png" type="Texture" id=6]
 
 [sub_resource type="TileSet" id=1]
