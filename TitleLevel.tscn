@@ -1,0 +1,141 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Title/How_To_Play.png" type="Texture" id=2]
+[ext_resource path="res://Title/Settings_Hover.png" type="Texture" id=3]
+[ext_resource path="res://Music and Sounds/Main Music.mp3" type="AudioStream" id=4]
+[ext_resource path="res://Title/Background.png" type="Texture" id=5]
+[ext_resource path="res://Title/Title.png" type="Texture" id=6]
+[ext_resource path="res://Title/Settings_Normal.png" type="Texture" id=7]
+[ext_resource path="res://Music and Sounds/Button_Sound.mp3" type="AudioStream" id=8]
+[ext_resource path="res://Title/Start.png" type="Texture" id=9]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node2D
+	
+signal level_changed
+
+export (String) var level_name = \"Title\"
+	
+func _process(delta):
+	if $TitleMusic.playing == false:
+		$TitleMusic.play()
+	pass
+
+
+func _on_Settings_pressed():
+	$ButtonSound.play()
+	yield($ButtonSound, \"finished\")
+	get_tree().change_scene(\"res://Levels/SettingsLevel.tscn\")
+	
+func _unhandled_key_input(event) -> void:
+	emit_signal(\"level_changed\", level_name)
+	$ButtonSound.play()
+	yield($ButtonSound, \"finished\")
+"
+
+[sub_resource type="Animation" id=2]
+length = 6.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimationPlayer/Title:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3, 6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1265.77, 130 ), Vector2( 1265.77, 160 ), Vector2( 1265.77, 130 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+tracks/0/type = "value"
+tracks/0/path = NodePath("OverlayLayer/Overlay:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+tracks/0/type = "value"
+tracks/0/path = NodePath("OverlayLayer/Overlay:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
+}
+
+[node name="Title" type="Node2D"]
+script = SubResource( 1 )
+
+[node name="Background" type="Sprite" parent="."]
+position = Vector2( 960, 540 )
+texture = ExtResource( 5 )
+
+[node name="How_To_Play" type="Sprite" parent="."]
+position = Vector2( 338.739, 534.076 )
+scale = Vector2( 1.57407, 1.57407 )
+texture = ExtResource( 2 )
+
+[node name="ButtonSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+
+[node name="Settings" type="TextureButton" parent="."]
+margin_left = 1791.11
+margin_top = 953.367
+margin_right = 1910.11
+margin_bottom = 1073.37
+texture_normal = ExtResource( 7 )
+texture_hover = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Title"
+anims/Title = SubResource( 2 )
+
+[node name="Title" type="Sprite" parent="AnimationPlayer"]
+position = Vector2( 1265.77, 130 )
+scale = Vector2( 0.618186, 0.618186 )
+texture = ExtResource( 6 )
+
+[node name="TitleMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -10.0
+
+[node name="Start" type="Sprite" parent="."]
+position = Vector2( 1285.59, 817.594 )
+scale = Vector2( 0.279976, 0.279976 )
+texture = ExtResource( 9 )
+
+[node name="Transition" type="AnimationPlayer" parent="."]
+anims/FadeIn = SubResource( 3 )
+anims/FadeOut = SubResource( 4 )
+
+[node name="OverlayLayer" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="Overlay" type="ColorRect" parent="OverlayLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 0, 0, 0, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="Settings" to="." method="_on_Settings_pressed"]
+[connection signal="animation_finished" from="Transition" to="." method="_on_Transition_animation_finished"]

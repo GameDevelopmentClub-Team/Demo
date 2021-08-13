@@ -7,4 +7,4 @@ func _ready():
 func _on_Back_Button_pressed():
 	$ButtonSound.play()
 	yield($ButtonSound, "finished")
-	get_tree().change_scene("res://TitleScreen.tscn")
+	get_tree().change_scene("res://Levels/TitleLevel.tscn")
