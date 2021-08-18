@@ -75,7 +75,7 @@ __meta__ = {
 [node name="TitleLayer" type="CanvasLayer" parent="."]
 
 [node name="Background" type="Sprite" parent="TitleLayer"]
-position = Vector2( 960, 540 )
+position = Vector2( 965.663, 543.776 )
 texture = ExtResource( 2 )
 
 [node name="How_To_Play" type="Sprite" parent="TitleLayer"]
