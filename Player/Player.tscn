@@ -239,10 +239,12 @@ position = Vector2( -0.967097, 37.5391 )
 shape = SubResource( 23 )
 
 [node name="Light2D" type="Light2D" parent="."]
+visible = false
 position = Vector2( -1.25989, 0 )
 texture = ExtResource( 3 )
 texture_scale = 2.98
 shadow_enabled = true
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
 color = Color( 0, 0, 0, 1 )
