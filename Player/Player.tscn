@@ -202,9 +202,11 @@ start_node = "Idle"
 
 [sub_resource type="CapsuleShape2D" id=23]
 radius = 39.6639
+height = 55.6928
 
 [sub_resource type="CapsuleShape2D" id=24]
 radius = 34.9161
+height = 70.7451
 
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 2
@@ -238,7 +240,7 @@ parameters/Idle/blend_position = Vector2( 0, 0 )
 parameters/Run/blend_position = Vector2( 0, 0 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -0.967097, 37.5391 )
+position = Vector2( -0.967097, 22.4201 )
 shape = SubResource( 23 )
 
 [node name="Light2D" type="Light2D" parent="."]
@@ -255,5 +257,5 @@ color = Color( 0, 0, 0, 1 )
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( -2.51984, 32.7579 )
+position = Vector2( -5.03967, 23.9384 )
 shape = SubResource( 24 )

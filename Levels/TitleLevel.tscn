@@ -16,7 +16,8 @@ script = ExtResource( 1 )
 [node name="TitleLayer" type="CanvasLayer" parent="."]
 
 [node name="Background" type="Sprite" parent="TitleLayer"]
-position = Vector2( 965.663, 543.776 )
+position = Vector2( 960.019, 540.601 )
+scale = Vector2( 1.01764, 1.01764 )
 texture = ExtResource( 2 )
 
 [node name="How_To_Play" type="Sprite" parent="TitleLayer"]

@@ -1,21 +1,13 @@
 extends KinematicBody2D
 
+var velocity = Vector2.ZERO
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+	
+	$AnimationTree.get("parameters/playback").travel("Move")
+	$AnimationTree.set("parameters/Move/blend_position", velocity)
 
 
 func _on_Area2D_body_entered(body):
 	if body.name.begins_with("Boulder"):
-		get_tree().change_scene("res://Levels/SceneManager.tscn")
+		get_tree().change_scene("res://Levels/DeadScreen.tscn")

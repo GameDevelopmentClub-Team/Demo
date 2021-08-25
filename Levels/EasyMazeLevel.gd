@@ -10,4 +10,5 @@ func _ready():
 
 func _process(delta):
 	boulder.global_position = boulder.global_position.linear_interpolate(player.global_position, 0.025)
-	
+	if $ChasingMusic.playing == false:
+		$ChasingMusic.play()
