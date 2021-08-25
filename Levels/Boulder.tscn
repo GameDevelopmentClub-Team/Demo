@@ -125,3 +125,10 @@ parameters/BlendSpace2D/blend_position = Vector2( 0.0850078, 0.724138 )
 position = Vector2( 3.92879, 14.163 )
 shape = SubResource( 12 )
 one_way_collision = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 3.92879, 14.163 )
+shape = SubResource( 12 )
+one_way_collision = true

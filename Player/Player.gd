@@ -24,3 +24,8 @@ func _physics_process(delta):
 		$AnimationTree.set("parameters/Idle/blend_position", velocity)
 		$AnimationTree.set("parameters/Run/blend_position", velocity)
 		move_and_slide(velocity * speed)
+
+
+func _on_Area2D_body_entered(body):
+	if body.name.begins_with("Player"):
+		get_tree().change_scene("res://Levels/SettingsLevel.tscn")
