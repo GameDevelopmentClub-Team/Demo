@@ -24,3 +24,4 @@ func _physics_process(delta):
 		$AnimationTree.set("parameters/Idle/blend_position", velocity)
 		$AnimationTree.set("parameters/Run/blend_position", velocity)
 		move_and_slide(velocity * speed)
+
