@@ -70,45 +70,43 @@ tracks/0/keys = {
 "values": [ 0, 1, 2 ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=6]
+[sub_resource type="AnimationNodeAnimation" id=5]
 animation = "Left"
 
-[sub_resource type="AnimationNodeAnimation" id=7]
+[sub_resource type="AnimationNodeAnimation" id=6]
 animation = "Right"
 
-[sub_resource type="AnimationNodeAnimation" id=8]
+[sub_resource type="AnimationNodeAnimation" id=7]
 animation = "Down"
 
-[sub_resource type="AnimationNodeAnimation" id=9]
+[sub_resource type="AnimationNodeAnimation" id=8]
 animation = "Up"
 
-[sub_resource type="AnimationNodeBlendSpace2D" id=10]
-blend_point_0/node = SubResource( 6 )
+[sub_resource type="AnimationNodeBlendSpace2D" id=9]
+blend_point_0/node = SubResource( 5 )
 blend_point_0/pos = Vector2( -1, 0 )
-blend_point_1/node = SubResource( 7 )
+blend_point_1/node = SubResource( 6 )
 blend_point_1/pos = Vector2( 1, 0 )
-blend_point_2/node = SubResource( 8 )
+blend_point_2/node = SubResource( 7 )
 blend_point_2/pos = Vector2( 0, 1 )
-blend_point_3/node = SubResource( 9 )
+blend_point_3/node = SubResource( 8 )
 blend_point_3/pos = Vector2( 0, -1 )
 
-[sub_resource type="AnimationNodeStateMachine" id=11]
-states/BlendSpace2D/node = SubResource( 10 )
-states/BlendSpace2D/position = Vector2( 676, 97 )
+[sub_resource type="AnimationNodeStateMachine" id=10]
+states/BlendSpace2D/node = SubResource( 9 )
+states/BlendSpace2D/position = Vector2( 680, 97 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=12]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=11]
 
-[sub_resource type="CircleShape2D" id=5]
-radius = 55.1226
+[sub_resource type="CircleShape2D" id=12]
+radius = 113.402
 
 [node name="Boulder" type="KinematicBody2D"]
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 160, 160 )
-scale = Vector2( 5, 5 )
+scale = Vector2( 10, 10 )
 texture = ExtResource( 1 )
 hframes = 12
-frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Down = SubResource( 1 )
@@ -117,12 +115,13 @@ anims/Right = SubResource( 3 )
 anims/Up = SubResource( 4 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 11 )
+tree_root = SubResource( 10 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 12 )
+parameters/playback = SubResource( 11 )
 parameters/BlendSpace2D/blend_position = Vector2( 0.0850078, 0.724138 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 162.528, 166.671 )
-shape = SubResource( 5 )
+position = Vector2( 3.92879, 14.163 )
+shape = SubResource( 12 )
+one_way_collision = true
