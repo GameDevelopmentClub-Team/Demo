@@ -1,10 +1,13 @@
 extends Node2D
 
 const SceneTwo = preload("res://Levels/EasyMazeLevel.tscn")
+var count = 0
 
-func _process(delta):
-	if Input.is_action_just_pressed("Left_Mouse"):
+func _unhandled_key_input(event):
+	yield(get_tree().create_timer(1), "timeout")
+	if event.is_pressed() && count != 1:
 		$TransitionScene.transition()
+		count += 1
 
 func _on_TransitionScene_transitioned():
 	$CurrentScene.get_child(0).queue_free()
